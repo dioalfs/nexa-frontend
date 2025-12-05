@@ -1,0 +1,205 @@
+/* ===========================
+   AUTH THEME VARIABLES
+   =========================== */
+:root {
+    --primary: #007cf0;
+
+    --bg-auth: #eef5f9;
+    --card-bg: #ffffff;
+    --text-main: #102c57;
+    --text-muted: #6b7280;
+
+    --input-bg: #f3f8fb;
+    --input-border: #d3dce6;
+
+    --btn-primary: #007bff;
+    --btn-primary-hover: #0069d9;
+}
+
+/* ikut tema dari localStorage: data-theme="dark" */
+[data-theme="dark"] {
+    --bg-auth: #020617;
+    --card-bg: #020617;
+    --text-main: #e2e8f0;
+    --text-muted: #9ca3af;
+
+    --input-bg: #020617;
+    --input-border: #1f2937;
+
+    --btn-primary: #0ea5e9;
+    --btn-primary-hover: #0284c7;
+}
+/* === Perbaikan dark mode supaya card sesuai tema Nexa === */
+[data-theme="dark"] .auth-card {
+    background: #0f172a;      /* biru gelap netral, bukan hitam */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55); /* glow halus */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] body {
+    background: #020617; /* tetap pakai background dark utama */
+}
+
+[data-theme="dark"] .auth-input {
+    background: #0b1628; /* sedikit lebih terang dari bg */
+    border-color: #1e293b;
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .auth-input::placeholder {
+    color: #64748b;
+}
+
+/* ===========================
+   GLOBAL
+   =========================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg-auth);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* Wrapper supaya card selalu center */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+/* Kartu utama */
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 32px 28px 28px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+}
+
+/* Logo */
+.auth-logo {
+    width: 100px;
+    display: block;
+    margin: 0 auto 12px auto;
+}
+
+/* Judul & subteks */
+.auth-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+/* Form */
+.auth-form-group {
+    margin-bottom: 16px;
+}
+
+.auth-label {
+    display: block;
+    text-align: left;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 11px 13px;
+    border-radius: 10px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.auth-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(0, 124, 240, 0.25);
+}
+
+/* Tombol utama */
+.auth-btn-primary {
+    width: 100%;
+    padding: 11px;
+    margin-top: 4px;
+    border-radius: 999px;
+    border: none;
+    background: var(--btn-primary);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.97rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.auth-btn-primary:hover {
+    background: var(--btn-primary-hover);
+    transform: translateY(-1px);
+}
+
+.auth-btn-primary:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+}
+
+/* Pesan error / success */
+.auth-msg {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.auth-msg.error {
+    color: #dc2626;
+}
+
+.auth-msg.success {
+    color: #16a34a;
+}
+
+/* Link kecil di bawah */
+.auth-footer-text {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.auth-footer-text a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer-text a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 24px 20px 20px;
+        border-radius: 20px;
+    }
+}
+[data-theme="dark"] .auth-card {
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.7);
+}

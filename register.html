@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Nexa</title>
+
+    <!-- Jalankan dulu tema -->
+    <script>
+      (function () {
+          var savedTheme = localStorage.getItem('theme') || 'light';
+          document.documentElement.setAttribute('data-theme', savedTheme);
+      })();
+    </script>
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS khusus auth -->
+    <link rel="stylesheet" href="auth-style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <img src="imglogo-nexa.png" alt="Nexa Logo" class="auth-logo">
+
+            <h1 class="auth-title">Daftar Akun</h1>
+            <p class="auth-subtitle">
+                Buat akun baru untuk mulai mencari laptop impianmu.
+            </p>
+
+            <form id="registerForm">
+                <div class="auth-form-group">
+                    <label class="auth-label" for="regUsername">Username</label>
+                    <input type="text" id="regUsername" class="auth-input" placeholder="Masukkan username" required>
+                </div>
+
+                <div class="auth-form-group">
+                    <label class="auth-label" for="regPassword">Password</label>
+                    <input type="password" id="regPassword" class="auth-input" placeholder="Masukkan password" required>
+                </div>
+
+                <button type="submit" class="auth-btn-primary">
+                    Daftar Sekarang
+                </button>
+
+                <p id="msg" class="auth-msg"></p>
+            </form>
+
+            <p class="auth-footer-text">
+                Sudah punya akun?
+                <a href="login.html">Login di sini</a>
+            </p>
+        </div>
+    </div>
+    <!-- Script register kamu -->
+     <script src="theme.js"></script>
+    <script src="register.js"></script>
+</body>
+</html>

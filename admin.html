@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Nexa</title>
+
+    <!-- Cek akses admin dulu -->
+    <script src="auth.js"></script>
+
+    <!-- Icon & Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS utama Nexa -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR (SAMA DENGAN NEXA.HTML) -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button id="menuBtn" class="icon-btn" aria-label="Buka menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+
+            <a class="nav-brand" href="nexa.html">
+                <img src="imglogo-nexa.png" class="brand-logo" alt="Nexa logo">
+                <span class="brand-title">Nexa</span>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <!-- tombol tema -->
+            <button id="themeToggle" class="icon-btn" aria-label="Ganti tema">
+                <span class="material-symbols-outlined">light_mode</span>
+            </button>
+
+            <!-- avatar / login di-inject oleh sidebar.js -->
+            <div id="navAuthSection" class="nav-auth-wrapper"></div>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR (SAMA DENGAN NEXA.HTML) -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-menu">
+            <a href="nexa.html" class="sidebar-item">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text">Beranda</span>
+            </a>
+            <a href="admin.html" class="sidebar-item active">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="text">Dashboard Admin</span>
+            </a>
+            <a href="privasi.html" class="sidebar-item">
+                <span class="material-symbols-outlined">lock</span>
+                <span class="text">Kebijakan Privasi</span>
+            </a>
+            <a href="tentang.html" class="sidebar-item">
+                <span class="material-symbols-outlined">info</span>
+                <span class="text">Tentang Kami</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- OVERLAY UNTUK MOBILE -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- BACKGROUND GLOW (kalau mau sama persis) -->
+    <div class="background-gfx"></div>
+
+    <!-- MAIN CONTENT – WAJIB ADA ID INI -->
+    <!-- MAIN CONTENT -->
+     <!-- ... sidebar di atas ... -->
+
+    <!-- MAIN CONTENT ADMIN -->
+    <!-- KONTEN UTAMA ADMIN -->
+    <main id="main-content">
+        <section class="admin-card">
+
+            <!-- HEADER ADMIN -->
+            <div class="admin-header">
+                <div class="admin-title">
+                    <img src="imglogo-nexa.png" alt="Logo Nexa" class="admin-logo">
+                    <div>
+                        <h1>Admin Dashboard</h1>
+                        <p>Kelola data laptop yang digunakan Nexa untuk rekomendasi.</p>
+                    </div>
+                </div>
+
+                <div class="admin-header-actions">
+                    <button onclick="toggleForm()" class="btn-admin-primary">
+                        + Tambah Laptop
+                    </button>
+                    <button onclick="logout()" class="btn-admin-ghost">
+                        Keluar
+                    </button>
+                </div>
+            </div>
+
+            <!-- FORM TAMBAH LAPTOP -->
+            <div id="addFormContainer" class="admin-form" style="display:none;">
+                <h3 class="form-title">Tambah Laptop Baru</h3>
+
+                <form id="addLaptopForm">
+
+    <!-- Nama -->
+    <label>Nama Laptop</label>
+    <input type="text" id="namaLaptop" required>
+
+    <!-- Brand -->
+    <label>Merek</label>
+    <input type="text" id="brand" required>
+
+    <!-- Harga -->
+    <label>Harga (Rp)</label>
+    <input type="number" id="harga" min="500000" max="15000000" step="10000" 
+           placeholder="Contoh: 7900000" required>
+
+    <!-- CPU -->
+    <label>CPU</label>
+    <input type="text" id="cpu" placeholder="Contoh: Core i5-1135G7" required>
+
+    <!-- RAM -->
+    <label>RAM (GB)</label>
+    <input type="number" id="ram" min="2" max="64" step="1" required>
+
+    <!-- Storage -->
+    <label>Storage</label>
+    <input type="text" id="storage" placeholder="Contoh: SSD 512GB" required>
+
+    <!-- GPU -->
+    <label>GPU</label>
+    <input type="text" id="gpu" placeholder="Contoh: Integrated / RTX 3050" required>
+
+    <!-- Berat -->
+    <label>Berat (Kg)</label>
+    <input type="number" id="berat" min="0.5" max="5" step="0.01"
+           placeholder="Contoh: 1.39" required>
+
+    <!-- Baterai -->
+    <label>Baterai (Jam)</label>
+    <input type="number" id="baterai" min="2" max="20" step="1"
+           placeholder="Contoh: 10" required>
+
+    <!-- Layar -->
+    <label>Layar (Ukuran + Panel)</label>
+    <input type="text" id="layar" placeholder="Contoh: 14&quot; IPS 300 nits" required>
+
+    <!-- Fitur -->
+    <label>Fitur (pisahkan dengan koma)</label>
+    <input type="text" id="fitur" placeholder="Windows 11, Fingerprint, Backlit Keyboard">
+
+    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-admin-primary">Simpan</button>
+                        <button type="button" onclick="toggleForm()" class="btn-admin-ghost">Batal</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- TABEL LAPTOP -->
+            <section class="admin-table-section">
+                <h2 class="table-title">Daftar Laptop</h2>
+
+                <div class="table-wrapper">
+                    <table id="laptopTable" class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama Laptop</th>
+                                <th>Harga</th>
+                                <th>Merek</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Diisi otomatis oleh admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </section>
+    </main>
+    
+    <script src="admin.js"></script>
+    <script src="theme.js"></script>
+    <script src="sidebar.js" defer></script>
+</body>
+</html>

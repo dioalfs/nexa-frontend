@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Rekomendasi - Nexa</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="hasil-page">
+    <button id="themeToggle" class="theme-toggle-btn" title="Ganti Tema">☀️</button>
+
+    <div class="result-page">
+        <div class="result-header">
+            <h1>✔️ Rekomendasi Untukmu</h1>
+            <p id="result-summary">
+                Berdasarkan kriteriamu, ditemukan beberapa laptop yang cocok. Berikut 5 pilihan teratas:
+            </p>
+        </div>
+
+        <div id="results" class="results-container">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Menganalisis pilihan terbaik...</p>
+            </div>
+        </div>
+
+        <div class="result-actions">
+            <a href="nexa.html" class="btn-back">Ubah Pencarian</a>
+        </div>
+    </div>
+
+    <script src="hasil.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexa - Rekomendasi Laptop Cerdas</title>
+
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button id="menuBtn" class="icon-btn" aria-label="Toggle sidebar">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <a class="nav-brand" href="nexa.html">
+                <img src="imglogo-nexa.png" class="brand-logo" alt="Nexa logo">
+                <span class="brand-title">Nexa</span>
+            </a>
+    </div>
+
+    <div class="nav-right">
+    <!-- tombol tema -->
+    <button id="themeToggle" class="icon-btn" aria-label="Ganti tema">
+        <span class="material-symbols-outlined">light_mode</span>
+    </button>
+
+    <!-- DI SINI profil / login akan muncul dari JS -->
+    <div id="navAuthSection" class="nav-auth-wrapper"></div>
+</div>
+
+</nav>
+
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+        <a href="nexa.html" class="sidebar-item active">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text">Beranda</span>
+        </a>
+        <a href="admin.html" class="sidebar-item d-none" id="linkAdminSidebar">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text">Dashboard Admin</span>
+        </a>
+        <a href="privasi.html" class="sidebar-item">
+            <span class="material-symbols-outlined">lock</span>
+            <span class="text">Kebijakan Privasi</span>
+        </a>
+        <a href="tentang.html" class="sidebar-item">
+            <span class="material-symbols-outlined">info</span>
+            <span class="text">Tentang Kami</span>
+        </a>
+    </aside>
+
+    <!-- OVERLAY (MOBILE) -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+        <div class="container">
+            <div class="form-header">
+                <h2>Cari Laptop Impianmu 🎓</h2>
+                <p>Jawab beberapa pertanyaan, Nexa akan mencarikan laptop yang paling cocok.</p>
+            </div>
+
+            <form id="recommendationForm">
+                <!-- PROGRESS BAR -->
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+
+                <!-- STEP 1: BUDGET -->
+                <div class="form-step active" data-step="1">
+                    <label for="budget">Berapa anggaran maksimalmu?</label>
+                    <h3 id="budgetDisplay" class="budget">Rp 10.000.000</h3>
+                    <input type="range" id="budget" min="2000000" max="30000000" step="100000" value="10000000">
+                    <div class="slider-labels">
+                        <span>2 Juta</span>
+                        <span>30 Juta</span>
+                    </div>
+                </div>
+
+                <!-- STEP 2: JURUSAN -->
+                <div class="form-step" data-step="2">
+                    <label for="major">Apa kelompok jurusanmu?</label>
+                    <select id="major" required>
+                        <option value="">-- Pilih Kelompok Jurusan --</option>
+                        <option value="Umum">Umum / Non-Teknik (Ekonomi, Sastra, dll.)</option>
+                        <option value="Teknik/Desain">Teknik / Desain (Informatika, DKV, Arsitek, dll.)</option>
+                    </select>
+                </div>
+
+                <!-- STEP 3: PRIORITAS -->
+                <div class="form-step" data-step="3">
+                    <label>Apa prioritas utamamu?</label>
+                    <div class="priority-options">
+                        <div class="priority-card" data-value="portabilitas">
+                            <span class="icon">✈️</span>
+                            <span>Portabilitas</span>
+                            <small>Ringan & baterai awet</small>
+                        </div>
+                        <div class="priority-card" data-value="performa">
+                            <span class="icon">🚀</span>
+                            <span>Performa</span>
+                            <small>Kekuatan maksimal</small>
+                        </div>
+                        <div class="priority-card" data-value="layar">
+                            <span class="icon">🎨</span>
+                            <span>Kualitas Layar</span>
+                            <small>Warna akurat & tajam</small>
+                        </div>
+                    </div>
+                    <input type="hidden" id="priority" required>
+                </div>
+
+                <!-- STEP 4: BRAND OPSIONAL -->
+                <div class="form-step" data-step="4">
+                    <label>Pilih merek favorit (opsional)</label>
+                    <div id="brand-filters" class="brand-filter-container">
+                        <p class="placeholder">Memuat daftar merek dari server...</p>
+                    </div>
+                </div>
+
+                <!-- NAVIGASI FORM -->
+                <div class="form-navigation">
+                    <button type="button" class="nav-btn prev-btn">Kembali</button>
+                    <button type="button" class="nav-btn next-btn">Lanjut</button>
+                    <button type="submit" class="nav-btn submit-btn">Dapatkan Rekomendasi</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- SCRIPT -->
+    <script src="theme.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="nexa.js"></script>
+</body>
+</html>

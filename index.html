@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexa - Cari Laptop Impianmu</title>
+
+    <!-- Font & style utama (pakai yang sudah ada) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Pakai tema tersimpan -->
+    <script>
+      (function () {
+          var savedTheme = localStorage.getItem('theme') || 'light';
+          document.documentElement.setAttribute('data-theme', savedTheme);
+      })();
+    </script>
+</head>
+<body class="landing-body">
+
+    <!-- NAVBAR LANDING -->
+    <header class="landing-nav">
+        <div class="landing-nav-left">
+            <a href="index.html" class="landing-brand">
+                <img src="imglogo-nexa.png" alt="Logo Nexa" class="landing-logo">
+                <span class="landing-brand-text">Nexa</span>
+            </a>
+        </div>
+
+        <nav class="landing-nav-links">
+            <a href="#fitur">Fitur</a>
+            <a href="#cara-kerja">Cara Kerja</a>
+            <a href="#tim">Tim</a>
+        </nav>
+
+        <div class="landing-nav-right">
+            <!-- tombol tema kecil (opsional, bisa dihapus kalau mau simple) -->
+            <button id="themeToggle" class="landing-theme-btn" aria-label="Ganti tema">
+                ☀️
+            </button>
+            <a href="login.html" class="landing-login-link">Login</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <main class="landing-main">
+        <section class="landing-hero">
+            <div class="landing-hero-text">
+                <p class="landing-eyebrow">Sistem Pakar Rekomendasi Laptop</p>
+                <h1>Cari laptop terbaik<br>untuk kuliahmu 🎓</h1>
+                <p class="landing-hero-subtitle">
+                    Nexa membantumu memilih laptop berdasarkan jurusan, anggaran, 
+                    dan prioritas — tanpa pusing baca spesifikasi satu per satu.
+                </p>
+
+                <div class="landing-hero-actions">
+                    <a href="login.html" class="landing-btn-primary">
+                        Mulai Rekomendasi
+                    </a>
+                </div>
+                <p class="landing-hero-note">
+                    Login dulu untuk memulai rekomendasi laptop terbaik untukmu.
+                </p>
+
+            </div>
+
+            <div class="landing-hero-illustration">
+                <!-- pakai gambar yang sudah ada, bebas diganti -->
+                <div class="landing-hero-card">
+                    <img src="imglogo-nexa.png" alt="Ilustrasi Nexa" class="landing-hero-img">
+                    <p>“Dalam hitungan detik, Nexa menilai puluhan laptop dan menampilkan 5 terbaik untukmu.”</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTON FITUR -->
+        <section id="fitur" class="landing-section landing-features">
+            <h2>Kenapa pakai Nexa?</h2>
+            <div class="landing-feature-grid">
+                <div class="landing-feature-card">
+                    <h3>Rekomendasi Cerdas</h3>
+                    <p>Berbasis metode <em>Simple Additive Weighting (SAW)</em> dan aturan pakar, bukan sekadar tebakan.</p>
+                </div>
+                <div class="landing-feature-card">
+                    <h3>Sesuai Jurusan</h3>
+                    <p>Teknik, desain, atau umum — kriteria dioptimalkan sesuai kebutuhan kuliahmu.</p>
+                </div>
+                <div class="landing-feature-card">
+                    <h3>Anggaran Terjaga</h3>
+                    <p>Pilih rentang harga, Nexa hanya menampilkan laptop yang sesuai kemampuanmu.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION CARA KERJA -->
+        <section id="cara-kerja" class="landing-section landing-how">
+            <h2>Cara kerja Nexa</h2>
+            <ol class="landing-steps">
+                <li>Jawab beberapa pertanyaan sederhana mengenai anggaran, jurusan, dan prioritas.</li>
+                <li>Nexa menghitung skor tiap laptop di database berdasarkan kriteria tersebut.</li>
+                <li>Kamu mendapat 5 rekomendasi terbaik lengkap dengan alasan kenapa laptop itu cocok.</li>
+            </ol>
+        </section>
+
+        <!-- SECTION TIM SINGKAT -->
+        <section id="tim" class="landing-section landing-team">
+            <h2>Dibuat oleh mahasiswa untuk mahasiswa</h2>
+            <p>
+                Nexa dikembangkan oleh Kelompok 4, mahasiswa Teknologi Informasi 
+                ITSNU Pekalongan, sebagai proyek sistem pakar untuk membantu teman-teman
+                memilih laptop dengan lebih mudah dan rasional.
+            </p>
+        </section>
+    </main>
+    <footer class="landing-footer">
+        <button type="button" id="btnPrivacy" class="footer-link-btn">
+            Kebijakan Privasi
+        </button>
+        <button type="button" id="btnAbout" class="footer-link-btn">
+            Tentang Kami
+        </button>
+    </footer>
+    <!-- Theme toggle & logika tema yang sudah ada -->
+    <script src="theme.js"></script>
+    <script src="index.js"></script>
+    <!-- Modal Kebijakan Privasi -->
+<div id="modalPrivacy" class="modal-overlay">
+  <div class="modal-card">
+    <button class="modal-close" data-close-modal="modalPrivacy">✕</button>
+    <h2>Kebijakan Privasi</h2>
+    <p class="modal-subtitle">
+      Privasi Anda adalah prioritas kami.
+    </p>
+
+    <div class="modal-body">
+      <!-- 👉 Copy–paste ringkasan dari privasi.html di sini -->
+      <h3>1. Data yang Kami Proses</h3>
+      <p>Saat menggunakan Nexa, kami tidak mengumpulkan data pribadi sensitif
+         seperti nama lengkap, alamat, atau nomor telepon.</p>
+
+      <h3>2. Cara Kerja Sistem</h3>
+      <p>Data anggaran, jurusan, dan prioritas hanya digunakan untuk menghitung
+         rekomendasi laptop dan tidak dibagikan ke pihak lain.</p>
+
+      <!-- dst, sesuaikan sendiri -->
+    </div>
+  </div>
+</div>
+
+<!-- Modal Tentang Kami -->
+<div id="modalAbout" class="modal-overlay">
+  <div class="modal-card">
+    <button class="modal-close" data-close-modal="modalAbout">✕</button>
+    <h2>Tentang Nexa</h2>
+    <p class="modal-subtitle">
+      Kenal lebih dekat tim di balik Nexa.
+    </p>
+
+    <div class="modal-body">
+      <!-- 👉 Copy–paste ringkasan dari tentang.html di sini -->
+      <p>Nexa adalah sistem rekomendasi laptop untuk mahasiswa yang dikembangkan
+         oleh Kelompok 4 TI ITSNU Pekalongan.</p>
+
+      <ul>
+        <li>Dio Alfasurur</li>
+        <li>Nia Syahfa'a</li>
+        <li>Nur Laeli Fitriani</li>
+        <li>Ainatul Afidah</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

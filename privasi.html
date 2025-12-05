@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebijakan Privasi - Nexa</title>
+
+    <!-- ICON & FONT -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- CSS UTAMA -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Sedikit styling khusus halaman ini -->
+    <style>
+        .page-content p { text-align: justify; }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR (SAMA DENGAN nexa.html) -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button id="menuBtn" class="icon-btn" aria-label="Buka menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+
+            <a class="nav-brand" href="nexa.html">
+                <img src="nexalogo.png" class="brand-logo" alt="Nexa logo">
+                <span class="brand-title">Nexa</span>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <!-- toggle tema -->
+            <button id="themeToggle" class="icon-btn" aria-label="Ganti tema">
+                <span class="material-symbols-outlined">light_mode</span>
+            </button>
+
+            <!-- Avatar / Login di-inject oleh sidebar.js -->
+            <div id="navAuthSection" class="nav-auth-wrapper"></div>
+        </div>
+    </nav>
+
+    <!-- BACKGROUND GLOW -->
+    <div class="background-gfx"></div>
+
+    <!-- OVERLAY + SIDEBAR (SAMA DENGAN nexa.html) -->
+    <div id="overlay" class="overlay"></div>
+
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-menu">
+        <a href="nexa.html" class="sidebar-item">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text">Beranda</span>
+        </a>
+        <a href="admin.html" class="sidebar-item d-none" id="linkAdminSidebar">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text">Dashboard Admin</span>
+        </a>
+        <a href="privasi.html" class="sidebar-item active">
+            <span class="material-symbols-outlined">lock</span>
+            <span class="text">Kebijakan Privasi</span>
+        </a>
+        <a href="tentang.html" class="sidebar-item">
+            <span class="material-symbols-outlined">info</span>
+            <span class="text">Tentang Kami</span>
+        </a>
+    </div>
+</aside>
+
+
+    <!-- KONTEN UTAMA -->
+    <main id="main-content">
+        <div class="container result-container container-text">
+            <h1>Kebijakan Privasi</h1>
+            <p>Privasi Anda adalah prioritas kami.</p>
+            <p><strong>Terakhir diperbarui: 24 November 2023</strong></p>
+
+            <div class="page-content">
+                <h2>1. Data yang Kami Proses</h2>
+                <p>
+                    Saat Anda menggunakan Nexa, kami tidak mengumpulkan data pribadi sensitif seperti
+                    nama lengkap, alamat rumah, atau nomor telepon. Data yang digunakan di dalam aplikasi
+                    (anggaran, jurusan, dan prioritas) hanya dipakai untuk menghitung rekomendasi laptop
+                    secara lokal atau melalui server Nexa.
+                </p>
+
+                <h2>2. Cara Kerja Sistem</h2>
+                <p>
+                    Nexa menggunakan metode <em>Simple Additive Weighting (SAW)</em> untuk menghitung skor
+                    setiap laptop berdasarkan kriteria yang Anda berikan. Data spesifikasi laptop berasal
+                    dari basis data internal yang dikelola oleh tim pengembang.
+                </p>
+
+                <h2>3. Penyimpanan & Keamanan</h2>
+                <p>
+                    Beberapa preferensi seperti tema (terang/gelap) dan status login dapat disimpan di
+                    peramban Anda menggunakan <em>localStorage</em>. Data ini hanya tersimpan di perangkat
+                    Anda dan tidak dibagikan ke pihak lain.
+                </p>
+
+                <h2>4. Perubahan Kebijakan</h2>
+                <p>
+                    Kebijakan privasi ini dapat diperbarui sewaktu-waktu untuk menyesuaikan dengan
+                    pengembangan fitur Nexa. Tanggal pembaruan akan selalu kami tampilkan di bagian atas
+                    halaman ini.
+                </p>
+
+                <h2>5. Kontak Kami</h2>
+                <p>
+                    Jika Anda memiliki pertanyaan, masukan, atau keberatan terkait kebijakan privasi ini,
+                    silakan hubungi tim pengembang melalui kontak akademik atau kampus kami.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- SCRIPT -->
+    <script src="theme.js"></script>
+    <script src="sidebar.js" defer></script>
+</body>
+</html>
