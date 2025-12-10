@@ -23,7 +23,7 @@
 - [ ] Check for security issues
 
 ## Backend Files
-- [ ] Review nexa-backend files
+- [ ] Review laptofy-backend files
 - [ ] Check for security vulnerabilities
 - [ ] Optimize code structure
 - [ ] Validate API endpoints

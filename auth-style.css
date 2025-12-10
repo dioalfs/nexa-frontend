@@ -29,7 +29,7 @@
     --btn-primary: #0ea5e9;
     --btn-primary-hover: #0284c7;
 }
-/* === Perbaikan dark mode supaya card sesuai tema Nexa === */
+/* === Perbaikan dark mode supaya card sesuai tema Laptofy === */
 [data-theme="dark"] .auth-card {
     background: #0f172a;      /* biru gelap netral, bukan hitam */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55); /* glow halus */

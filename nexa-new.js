@@ -1,5 +1,5 @@
 /**
- * Nexa - Sistem Rekomendasi Laptop Cerdas
+ * Laptofy - Sistem Rekomendasi Laptop Cerdas
  * File utama untuk logika frontend aplikasi
  * @author Kelompok 4 - ITSNU Pekalongan
  * @version 1.0.0
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             PRIORITY_INPUT: '#priority',
             BRAND_FILTERS_CONTAINER: '#brand-filters'
         },
-        API_BASE_URL: 'https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api'
+        API_BASE_URL: 'https://lazy-bili-laptofyproject-5f3b6277.koyeb.app/api'
     };
 
     // =========================================

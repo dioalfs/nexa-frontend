@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
     
     // 1. Cek tema yang tersimpan di memori browser
-    const savedTheme = localStorage.getItem('nexa-theme');
+    const savedTheme = localStorage.getItem('laptofy-theme');
     
     if (savedTheme === 'dark') {
         htmlElement.setAttribute('data-theme', 'dark');
@@ -22,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pindah ke Light
                 htmlElement.setAttribute('data-theme', 'light');
                 toggleBtn.textContent = '☀️';
-                localStorage.setItem('nexa-theme', 'light');
+                localStorage.setItem('laptofy-theme', 'light');
             } else {
                 // Pindah ke Dark
                 htmlElement.setAttribute('data-theme', 'dark');
                 toggleBtn.textContent = '🌙';
-                localStorage.setItem('nexa-theme', 'dark');
+                localStorage.setItem('laptofy-theme', 'dark');
             }
         });
     }
