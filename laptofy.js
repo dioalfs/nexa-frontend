@@ -1,5 +1,5 @@
 // laptofy.js
-const API_URL = 'https://lazy-bili-laptofyproject-5f3b6277.koyeb.app/api/laptops';
+const API_URL = 'https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api/laptops';
 
 document.addEventListener('DOMContentLoaded', () => {
     // ELEMENT FORM & STEP
