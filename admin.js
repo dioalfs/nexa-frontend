@@ -1,5 +1,5 @@
 // FINAL
-const API_URL = 'https://lazy-bili-laptofyproject-5f3b6277.koyeb.app/api/laptops';
+const API_URL = 'https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api/laptops';
 
 // 1. Load Data saat halaman dibuka
 document.addEventListener('DOMContentLoaded', fetchLaptops);

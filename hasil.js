@@ -20,7 +20,7 @@ async function runExpertSystem() {
     }
 
     try {
-        const response = await fetch('https://lazy-bili-laptofyproject-5f3b6277.koyeb.app/api/laptops');
+        const response = await fetch('https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api/laptops');
         const laptopDatabase = await response.json();
 
         // =========================
