@@ -10,7 +10,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     errorMsg.style.display = 'none';
 
     try {
-        const response = await fetch('https://lazy-bili-laptofyproject-5f3b6277.koyeb.app/api/login', { // ⬅ ini diganti
+        const response = await fetch('https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api/login', { // ⬅ ini diganti
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username: user, password: pass })
