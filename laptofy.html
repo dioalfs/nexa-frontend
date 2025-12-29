@@ -137,10 +137,32 @@
             </form>
         </div>
     </main>
-
+            <div class="nav-right">
+                <div id="profileMenu" class="profile-menu hidden">
+                    <div id="profileAvatar" class="avatar"></div>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </div>
+                <div id="profileDropdown" class="profile-dropdown hidden">
+                    <div class="profile-info">
+                        <div id="profileAvatarBig" class="avatar avatar-lg"></div>
+                        <p id="profileEmail">email@email.com</p>
+                    </div>
+                    <hr>
+                    <button id="logoutBtn">Logout</button>
+                </div>
+            </div>
     <!-- SCRIPT -->
-    <script src="theme.js"></script>
-    <script src="sidebar.js"></script>
-    <script src="laptofy.js"></script>
+<script src="theme.js"></script>
+<script src="sidebar.js"></script>
+
+<script type="module" src="auth-guard.js"></script>
+<script type="module">
+  import { requireAuth } from "./auth-guard.js";
+  requireAuth();
+</script>
+
+<script type="module" src="profile.js"></script>
+
+
 </body>
 </html>

@@ -336,3 +336,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 });
+import { requireAuth } from './auth.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  requireAuth();
+});
+

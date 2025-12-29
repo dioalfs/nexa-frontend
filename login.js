@@ -1,7 +1,10 @@
+import { supabase } from './supabase.js';
+
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const user = document.getElementById('username').value;
-    const pass = document.getElementById('password').value;
+
+    const email = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
     const errorMsg = document.getElementById('errorMsg');
     const btn = document.querySelector('button[type="submit"]');
 
@@ -10,36 +13,35 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     errorMsg.style.display = 'none';
 
     try {
-        const response = await fetch('https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api/login', { // ⬅ ini diganti
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user, password: pass })
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password
         });
 
-        const result = await response.json();
+        if (error) throw error;
 
-        if (result.success) {
-            const userData = result.user || result;
-            const username = userData.username || user;
-            const role = userData.role || 'user';
+        const userId = data.user.id;
 
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('username', username);
-            localStorage.setItem('role', role);
+        const { data: profile, error: profileError } = await supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', userId)
+            .single();
 
-            if (role === 'admin') {
-                window.location.href = 'admin.html';
-            } else {
-                window.location.href = 'laptofy.html';
-            }
+        if (profileError) throw profileError;
+
+        const role = profile?.role || 'user';
+
+        // REDIRECT SAJA — TANPA localStorage
+        if (role === 'admin') {
+            window.location.href = 'admin.html';
         } else {
-            errorMsg.textContent = result.message || "Username atau password salah.";
-            errorMsg.style.display = 'block';
-            btn.textContent = "Masuk Dashboard";
-            btn.disabled = false;
+            window.location.href = 'laptofy.html';
         }
+
     } catch (err) {
-        errorMsg.textContent = "Gagal terhubung ke server backend.";
+        console.error(err);
+        errorMsg.textContent = err.message || "Login gagal.";
         errorMsg.style.display = 'block';
         btn.textContent = "Masuk Dashboard";
         btn.disabled = false;

@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Laptofy</title>
 
-    <!-- Cek akses admin dulu -->
-    <script src="auth.js"></script>
-
     <!-- Icon & Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
@@ -185,8 +182,16 @@
         </section>
     </main>
     
-    <script src="admin.js"></script>
-    <script src="theme.js"></script>
-    <script src="sidebar.js" defer></script>
+<script src="theme.js"></script>
+<script src="sidebar.js"></script>
+
+<script type="module" src="auth-guard.js"></script>
+<script type="module">
+  import { requireAdmin } from "./auth-guard.js";
+  requireAdmin();
+</script>
+
+<script type="module" src="profile.js"></script>
+<script type="module" src="admin.js"></script>
 </body>
 </html>

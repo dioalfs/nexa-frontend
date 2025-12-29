@@ -1,56 +1,71 @@
-// FINAL
-const API_URL = 'https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api/laptops';
+// admin.js — FINAL Supabase Version
+// =================================
+import { supabase } from './supabase.js';
+import { requireAuth } from './auth.js';
 
-// 1. Load Data saat halaman dibuka
-document.addEventListener('DOMContentLoaded', fetchLaptops);
+document.addEventListener('DOMContentLoaded', async () => {
+    await requireAuth(true); // true = admin only
+    fetchLaptops();
+});
 
+// =================================
+// 1. LOAD DATA LAPTOP
+// =================================
 async function fetchLaptops() {
     try {
-        const response = await fetch(API_URL);
-        const laptops = await response.json();
-        const tbody = document.querySelector('#laptopTable tbody');
-        
-        tbody.innerHTML = ''; // Bersihkan tabel
+        const { data: laptops, error } = await supabase
+            .from('laptops')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-        if (laptops.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Belum ada data laptop.</td></tr>';
+        if (error) throw error;
+
+        const tbody = document.querySelector('#laptopTable tbody');
+        tbody.innerHTML = '';
+
+        if (!laptops || laptops.length === 0) {
+            tbody.innerHTML =
+                '<tr><td colspan="5" style="text-align:center;">Belum ada data laptop.</td></tr>';
             return;
         }
 
-        laptops.forEach(laptop => {
+        laptops.forEach((laptop) => {
             const tr = document.createElement('tr');
             const formattedPrice = new Intl.NumberFormat('id-ID').format(laptop.price);
-            
-            // PERBAIKAN PENTING: 
-            // Tambahkan tanda kutip '' di sekitar ${laptop.id} pada tombol hapus
-            // karena ID MongoDB berupa string.
+
             tr.innerHTML = `
-                <td style="font-size: 0.8rem; color: #888;">${laptop.id}</td>
+                <td style="font-size:0.75rem;color:#888">${laptop.id}</td>
                 <td><strong>${laptop.name}</strong></td>
                 <td>Rp ${formattedPrice}</td>
                 <td>${laptop.brand}</td>
                 <td>
-                    <button class="btn-delete" onclick="deleteLaptop('${laptop.id}')">Hapus</button>
+                    <button class="btn-delete" data-id="${laptop.id}">Hapus</button>
                 </td>
             `;
+
+            tr.querySelector('.btn-delete')
+                .addEventListener('click', () => deleteLaptop(laptop.id));
+
             tbody.appendChild(tr);
         });
-    } catch (error) {
-        console.error("Gagal memuat data:", error);
-        alert("Gagal terhubung ke server backend.");
+
+    } catch (err) {
+        console.error(err);
+        alert('Gagal memuat data laptop.');
     }
 }
 
-// 2. Fungsi Menambah Laptop
+// =================================
+// 2. TAMBAH LAPTOP
+// =================================
 const form = document.getElementById('addLaptopForm');
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Ambil data dari form
         const fiturInput = document.getElementById('fitur');
+
         const newLaptop = {
-            // pakai id input yang baru
             name: document.getElementById('namaLaptop').value.trim(),
             brand: document.getElementById('brand').value.trim(),
             price: Number(document.getElementById('harga').value),
@@ -61,78 +76,76 @@ if (form) {
             weight: Number(document.getElementById('berat').value),
             battery: Number(document.getElementById('baterai').value),
             screen: document.getElementById('layar').value.trim(),
-
-            // fitur dibersihkan dulu (hapus spasi & kosong)
-            fitur: fiturInput.value
-            .split(',')
-            .map(f => f.trim())
-            .filter(f => f.length > 0)
+            features: fiturInput.value
+                .split(',')
+                .map(f => f.trim())
+                .filter(Boolean)
         };
 
-
-        // Kirim ke Server (POST)
         try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newLaptop)
-            });
+            const { error } = await supabase
+                .from('laptops')
+                .insert([newLaptop]);
 
-            if (response.ok) {
-                alert('Berhasil menambah laptop!');
-                form.reset();
-                toggleForm();
-                fetchLaptops(); // Refresh tabel otomatis
-            } else {
-                alert('Gagal menambah data.');
-            }
-        } catch (error) {
-            console.error(error);
-            alert('Terjadi kesalahan server.');
+            if (error) throw error;
+
+            alert('Laptop berhasil ditambahkan.');
+            form.reset();
+            toggleForm();
+            fetchLaptops();
+
+        } catch (err) {
+            console.error(err);
+            alert('Gagal menambah laptop.');
         }
     });
 }
 
-// 3. Fungsi Menghapus Laptop
+// =================================
+// 3. HAPUS LAPTOP
+// =================================
 async function deleteLaptop(id) {
-    if (confirm('Yakin ingin menghapus laptop ini?')) {
-        try {
-            const response = await fetch(`${API_URL}/${id}`, {
-                method: 'DELETE'
-            });
+    if (!confirm('Yakin ingin menghapus laptop ini?')) return;
 
-            if (response.ok) {
-                fetchLaptops(); // Refresh tabel
-            } else {
-                alert('Gagal menghapus data.');
-            }
-        } catch (error) {
-            console.error(error);
-            alert('Error saat menghapus.');
-        }
+    try {
+        const { error } = await supabase
+            .from('laptops')
+            .delete()
+            .eq('id', id);
+
+        if (error) throw error;
+
+        fetchLaptops();
+
+    } catch (err) {
+        console.error(err);
+        alert('Gagal menghapus data.');
     }
 }
 
-// 4. Helper: Buka/Tutup Form
+// =================================
+// 4. TOGGLE FORM
+// =================================
 function toggleForm() {
     const formContainer = document.getElementById('addFormContainer');
-    if (formContainer.style.display === 'none' || formContainer.style.display === '') {
-        formContainer.style.display = 'block';
-    } else {
-        formContainer.style.display = 'none';
-    }
+    formContainer.style.display =
+        formContainer.style.display === 'block' ? 'none' : 'block';
 }
 
-// 5. Fungsi Logout (Baru)
-function logout() {
-    if(confirm("Apakah Anda yakin ingin keluar?")) {
-        // Hapus semua data sesi login
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('username');
-        localStorage.removeItem('role');
-        localStorage.removeItem('isAdminLoggedIn'); // Jaga-jaga jika masih pakai key lama
-        
-        // Kembalikan ke halaman login
-        window.location.href = 'login.html';
-    }
+// =================================
+// 5. LOGOUT (SUPABASE)
+// =================================
+async function logout() {
+    if (!confirm('Apakah Anda yakin ingin keluar?')) return;
+
+    await supabase.auth.signOut();
+    window.location.href = 'login.html';
 }
+
+// agar bisa dipanggil dari HTML
+window.logout = logout;
+window.toggleForm = toggleForm;
+
+import { requireAdmin } from './auth.js';
+
+await requireAdmin(); // ⛔ BLOK SEBELUM APA PUN JALAN

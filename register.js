@@ -1,42 +1,44 @@
-// register.js
+import { supabase } from "./supabase.js";
 
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const user = document.getElementById('regUsername').value;
-    const pass = document.getElementById('regPassword').value;
-    const msg = document.getElementById('msg');
-    const btn = document.querySelector('button[type="submit"]');
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    // Efek Loading
-    btn.textContent = "Mendaftarkan...";
-    btn.disabled = true;
-    msg.style.display = 'none';
+  const email = document.getElementById("regUsername").value;
+  const password = document.getElementById("regPassword").value;
+  const msg = document.getElementById("msg");
+  const btn = document.querySelector("button[type='submit']");
 
-    try {
-        const response = await fetch('https://lazy-bili-nexaproject-5f3b6277.koyeb.app/api/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: user, password: pass })
-        });
+  btn.textContent = "Mendaftarkan...";
+  btn.disabled = true;
+  msg.style.display = "none";
 
-        const result = await response.json();
+  // 1️⃣ Daftar ke Supabase Auth
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password
+  });
 
-        msg.textContent = result.message;
-        msg.style.display = 'block';
-        
-        if (result.success) {
-            msg.style.color = '#28a745'; // Hijau
-            setTimeout(() => window.location.href = 'login.html', 1500);
-        } else {
-            msg.style.color = '#dc3545'; // Merah
-            btn.textContent = "Daftar Sekarang";
-            btn.disabled = false;
-        }
-    } catch (err) {
-        msg.textContent = "Gagal terhubung ke server.";
-        msg.style.color = '#dc3545';
-        msg.style.display = 'block';
-        btn.textContent = "Daftar Sekarang";
-        btn.disabled = false;
-    }
+  if (error) {
+    msg.textContent = error.message;
+    msg.style.color = "#dc3545";
+    msg.style.display = "block";
+    btn.textContent = "Daftar Sekarang";
+    btn.disabled = false;
+    return;
+  }
+
+  // 2️⃣ Simpan profile ke table profiles
+  await supabase.from("profiles").insert({
+    id: data.user.id,
+    email: email,
+    role: "user"
+  });
+
+  msg.textContent = "Registrasi berhasil. Silakan login.";
+  msg.style.color = "#28a745";
+  msg.style.display = "block";
+
+  setTimeout(() => {
+    window.location.href = "login.html";
+  }, 1500);
 });
