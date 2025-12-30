@@ -141,6 +141,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 import { requireAuth } from './auth.js';
-import { supabase } from './supabase.js';
 
 await requireAuth(); // ⛔ BLOK TOTAL JIKA BELUM LOGIN
